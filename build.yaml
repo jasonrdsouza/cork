@@ -1,0 +1,43 @@
+# https://pub.dev/packages/build_config
+builders:
+  metadata:
+    import: "package:cork/cork.dart"
+    builder_factories: ["metadataBuilder"]
+    build_extensions:
+      .md:
+        - .metadata
+        - .mdcontent
+    auto_apply: root_package
+    required_inputs:
+      - .md
+  partial:
+    import: "package:cork/cork.dart"
+    builder_factories: ["partialBuilder"]
+    build_extensions:
+      .mdcontent:
+        - .withpartials
+    auto_apply: root_package
+    required_inputs:
+      - .mdcontent
+  markdown:
+    import: "package:cork/cork.dart"
+    builder_factories: ["markdownBuilder"]
+    build_extensions:
+      .withpartials:
+        - .htmlcontent
+    auto_apply: root_package
+    required_inputs:
+      - .withpartials
+  mustache:
+    import: "package:cork/cork.dart"
+    builder_factories: ["mustacheBuilder"]
+    build_extensions:
+      .htmlcontent:
+        - .html
+    auto_apply: root_package
+    required_inputs:
+      - .htmlcontent
+post_process_builders:
+  cleanup:
+    import: "package:cork/cork.dart"
+    builder_factory: cleanupBuilder

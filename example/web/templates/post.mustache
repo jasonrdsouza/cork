@@ -6,20 +6,16 @@
 </head>
 <body>
 
-<header>
-  <h1 id="title">{{title}}</h1>
-</header>
+<h1>{{title}}</h1>
 
-<main>
-  <div>
-    Tags:
-    {{#tags}}
-      | <i>{{.}}</i> |
-    {{/tags}}
-  </div>
+<div>
+  Tags:
+  {{#tags}}
+    | <i>{{.}}</i> |
+  {{/tags}}
+</div>
 
-  {{{content}}}
-<main>
+{{{content}}}
 
 </body>
 </html>

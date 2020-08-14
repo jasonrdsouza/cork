@@ -1,7 +1,7 @@
 ---
 title: "Post with Tags"
 tags: ['code', 'dartlang']
-template: lib/templates/post.mustache
+template: post.mustache
 ---
 
 This is an example post with embedded code snippets: 

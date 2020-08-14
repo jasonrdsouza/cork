@@ -1,9 +1,9 @@
 ---
 title: "Index"
-template: lib/templates/index.mustache
+template: index.mustache
 ---
 
 Sample homepage written in markdown.
 
-- [An example post](post1.html)
-- [A second post](post2.html)
+- [An example post](post/post1.html)
+- [A second post](post/post2.html)

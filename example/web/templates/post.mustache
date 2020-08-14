@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <script src="/scripts/base.dart.js"></script>
+</head>
+<body>
+
+<header>
+  <h1 id="title">{{title}}</h1>
+</header>
+
+<main>
+  <div>
+    Tags:
+    {{#tags}}
+      | <i>{{.}}</i> |
+    {{/tags}}
+  </div>
+
+  {{{content}}}
+<main>
+
+</body>
+</html>

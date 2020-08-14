@@ -1,13 +1,13 @@
 ---
 title: Post with custom logic
 tags: ['frontend']
-template: lib/templates/post.mustache
+template: post.mustache
 ---
 
 Custom frontend logic to manipulate post:
 
-<div id="sample"></div>
+<pre><code id="sample"></code></pre>
 
 The element above is populated via dart running on the client.
 
-<script src="/samplePopulate.dart.js"></script>
+<script src="/scripts/samplePopulate.dart.js"></script>

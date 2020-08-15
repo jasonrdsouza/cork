@@ -13,7 +13,14 @@ h1,h2,h3 {
 }
 
 img {
-  max-height: 500px;
+  max-height: 400px;
   height: 70%;
   width: auto;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px gray;
+}
+
+pre {
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #ccc;
 }

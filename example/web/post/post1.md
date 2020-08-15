@@ -15,7 +15,7 @@ void main() {
 
 And this one is transcluded from a file:
 <pre>
-<code>
-{{> lib/gists/fibonacci.dart}}
+<code class="language-dart">
+{{> lib/fibonacci.dart}}
 </code>
 </pre>

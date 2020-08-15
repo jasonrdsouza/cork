@@ -1,9 +1,8 @@
-name: cork
+name: cork_site
 description: A minimalist personal static site generator
-version: 0.0.1
+version: 1.0.0
 homepage: https://github.com/jasonrdsouza/cork
 repository: https://github.com/jasonrdsouza/cork
-author: Jason Dsouza <jasonrdsouza@gmail.com>
 
 environment:
   sdk: '>=2.1.0 <3.0.0'
@@ -18,4 +17,3 @@ dependencies:
 
 dev_dependencies:
   test: ^1.0.0
-  pedantic: ^1.0.0

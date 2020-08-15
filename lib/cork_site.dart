@@ -1,4 +1,4 @@
-library cork;
+library cork_site;
 // https://dart.dev/guides/libraries/create-library-packages
 
 export 'src/metadata.dart' show metadataBuilder;

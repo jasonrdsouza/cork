@@ -50,7 +50,7 @@ In that `pubspec.yaml` file, add Cork as a dependency, along with the necessary 
 ```
 name: my_site
 dependencies:
-  cork: ^0.0.1
+  cork_site: ^0.0.1
   build: any
 dev_dependencies:
   build_runner: any

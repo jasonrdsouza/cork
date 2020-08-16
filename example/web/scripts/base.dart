@@ -1,5 +1,3 @@
-import 'dart:html';
-
 main() {
-  print("Cork frontend active.");
+  print('Cork frontend active.');
 }

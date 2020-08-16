@@ -91,13 +91,4 @@ pub run build_runner build --release --output <OUTPUT_FOLDER_LOCATION>
 
 
 ## Example
-See the example folder for an example of a site build using Cork, as well as a sample layout. The example site includes:
-
-- a few simple CSS rules as an example of how to change the look
-- sample mustache templates
-- sample index, 404, etc pages
-- an image to illustrate static asset embedding
-- transclusion example of a code file
-- a collection of sample posts meant to illustrate a simple blog layout
-- syntax highlighting courtesy of [prism.js](https://prismjs.com/)
-- 2 dart scripts as an example of using dart for frontend scripting
+See the [example](example/) folder for an example of a site build using Cork, as well as a sample layout.

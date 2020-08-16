@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.1] - 2020-08-16
+### Changed
+- Added example readme for pub.dev integration
+- Add "pedantic" linter
+- fixed linter errors
+
 ## [1.0.0] - 2020-08-15
 ### Added
 - Initial version of Cork
@@ -19,7 +25,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - YAML front matter support
 - Dart scripting support
 - File transclusion support
-
-### Changed
-
-### Removed

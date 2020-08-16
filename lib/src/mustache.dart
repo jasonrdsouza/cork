@@ -9,19 +9,20 @@ import 'extensions.dart';
 Builder mustacheBuilder(_) => MustacheBuilder();
 
 class MustacheBuilder implements Builder {
+  @override
   Future build(BuildStep buildStep) async {
     var inputId = buildStep.inputId;
 
     var outputId = inputId.changeExtension(Extensions.html);
     var contents = await buildStep.readAsString(inputId);
     var metadata = await _readMetadata(buildStep);
-    var templateName = metadata['template'] ?? "";
+    var templateName = metadata['template'] ?? '';
     var templateStr = await _readTemplate(buildStep, templateName);
 
-    var template = new mustache.Template(templateStr, lenient: true);
+    var template = mustache.Template(templateStr, lenient: true);
 
     // also render the metadata to the input file
-    var contentTemplate = new mustache.Template(contents, lenient: true);
+    var contentTemplate = mustache.Template(contents, lenient: true);
     metadata['content'] = contentTemplate.renderString(metadata);
 
     var output = template.renderString(metadata);
@@ -51,18 +52,19 @@ class MustacheBuilder implements Builder {
   }
 
   Future<String> _readTemplate(BuildStep buildStep, String fileName) async {
-    var assets = await buildStep.findAssets(Glob("web/templates/*.mustache")).toList();
+    var assets = await buildStep.findAssets(Glob('web/templates/*.mustache')).toList();
     for (var asset in assets) {
-      var assetFileName = asset.path.split("/").last;
+      var assetFileName = asset.path.split('/').last;
       if (assetFileName == fileName) {
-        var assetStr = await buildStep.readAsString(new AssetId(asset.package, asset.path));
+        var assetStr = await buildStep.readAsString(AssetId(asset.package, asset.path));
         return assetStr;
       }
     }
 
-    return "";
+    return '';
   }
 
+  @override
   Map<String, List<String>> get buildExtensions => {
         Extensions.htmlContent: [Extensions.html],
       };

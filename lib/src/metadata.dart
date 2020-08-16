@@ -10,6 +10,7 @@ import 'utils.dart';
 Builder metadataBuilder(_) => MetadataBuilder();
 
 class MetadataBuilder implements Builder {
+  @override
   Future build(BuildStep buildStep) async {
     var inputId = buildStep.inputId;
 
@@ -29,6 +30,7 @@ class MetadataBuilder implements Builder {
     ]);
   }
 
+  @override
   Map<String, List<String>> get buildExtensions {
     return {
       Extensions.markdown: [
@@ -63,11 +65,11 @@ MetadataOutput extractMetadata(String fileContents, String path) {
     throw ('unexpected metadata');
   }
 
-  var metadata = new Map<String, dynamic>.from(yaml);
+  var metadata = Map<String, dynamic>.from(yaml);
   metadata['url'] = getHtmlPath(path);
 
   lines.removeRange(first, last + 1);
-  return new MetadataOutput(metadata, lines.join('\n'));
+  return MetadataOutput(metadata, lines.join('\n'));
 }
 
 class MetadataOutput {

@@ -1,6 +1,9 @@
 # Cork
 A minimalist personal static site generator.
 
+[![pub package](https://img.shields.io/pub/v/cork_site?style=for-the-badge)](https://pub.dev/packages/cork_site)
+
+
 This is an attempt to write the simplest possible static site generator that satisfies my own personal use cases and needs. It is not meant as a general purpose solution, and common site generation features which I don't use have been purposefully left out. *Use at your own risk*
 
 

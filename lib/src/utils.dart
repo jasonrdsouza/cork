@@ -1,37 +1,19 @@
 import 'package:path/path.dart' as path;
 
-const String metadataExtension = '.metadata.json';
-const String templatesPath = 'web/templates/';
+// Converts a local filepath to its web equivalent
+String getHtmlPath(String filepath) {
+  // example: sample/path/to/file.ext
+  var directoryParts = path.split(path.dirname(filepath)); // ['sample', 'path', 'to']
+  var htmlFilename = path.basenameWithoutExtension(filepath) + '.html'; // file.html
 
-String getMetadataPath(String p) {
-  var dirname = path.dirname(p);
-  var basename = path.basenameWithoutExtension(p);
-  var filename = basename + metadataExtension;
-  return path.join(dirname, filename);
+  var htmlPathComponents = directoryParts.sublist(1);
+  htmlPathComponents.add(htmlFilename); // ['path', 'to', 'file.html']
+  return htmlPathComponents.join('/'); // path/to/file.html
 }
 
-String getHtmlPath(String p) {
-  // input path/to/file.txt
-  var dirname = path.dirname(p); // path/to/
-  var basename = path.basenameWithoutExtension(p); // file
-  var dirnamePath = path.split(dirname); // ['path', to']
-  var filename = basename + '.html';
-  var result = ['/'];
-  result.addAll(dirnamePath.sublist(1));
-  result.add(filename);
-  return path.joinAll(result);
-}
-
-String stripTrailingSlash(String s) {
-  while (s?.endsWith('/') ?? false) {
-    s = s.substring(0, s.length - 1);
-  }
-  return s;
-}
-
-String addLeadingSlash(String s) {
-  if (s != null && !s.startsWith('/')) {
-    s = '/$s';
-  }
-  return s;
+// Calculates the amount of time it would take to read the given content
+int calculateReadingTimeMinutes(String content) {
+  const READER_WORDS_PER_MINUTE = 200;
+  var contentWords = content.split(RegExp(r'\s+')).length;
+  return (contentWords / READER_WORDS_PER_MINUTE).round() + 1;
 }

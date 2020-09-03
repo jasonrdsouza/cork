@@ -5,7 +5,7 @@ builders:
     builder_factories: ["metadataBuilder"]
     build_extensions:
       .md:
-        - .metadata
+        - .metadata.json
         - .mdcontent
     auto_apply: root_package
     required_inputs:

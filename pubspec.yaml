@@ -1,6 +1,6 @@
 name: cork_site
 description: A minimalist personal static site generator with an opinionated feature set.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/jasonrdsouza/cork
 repository: https://github.com/jasonrdsouza/cork
 

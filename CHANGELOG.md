@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0.4] - 2020-09-09
+- Add proper support for `.json` version of posts
+- In addition to the `.html` version of an article (www.example.com/article.html), the following are now also generated and available
+  - Markdown (www.example.com/article.md)
+  - JSON (www.example.com/article.json)
 
 ## [1.0.3] - 2020-09-03
 - Switch metadata output to use `.metadata.json` extension

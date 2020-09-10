@@ -8,6 +8,7 @@ class CleanupBuilder extends FileDeletingBuilder implements PostProcessBuilder {
   CleanupBuilder()
       : super([
           Extensions.htmlContent,
+          Extensions.json,
           Extensions.markdown,
           Extensions.markdownContent,
           Extensions.metadata,

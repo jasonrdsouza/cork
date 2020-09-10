@@ -49,29 +49,24 @@ MetadataOutput extractMetadata(String fileContents) {
   var lines = fileContents.split('\n');
   if (!lines.first.startsWith(separator)) return null;
 
-  int first;
-  int last;
-  for (var i = 0; i < lines.length; i++) {
+  int closingMetadataSeparatorIdx;
+  for (var i = 1; i < lines.length; i++) {
     if (lines[i].startsWith(separator)) {
-      if (first == null) {
-        first = i;
-        continue;
-      }
-      last = i;
+      closingMetadataSeparatorIdx = i;
       continue;
     }
   }
-  if (first == null || last == null) return null;
-  var yamlStr = lines.getRange(first + 1, last).join('\n');
+  if (closingMetadataSeparatorIdx == null) return null;
+
+  var yamlStr = lines.getRange(1, closingMetadataSeparatorIdx).join('\n');
   var yaml = loadYaml(yamlStr);
   if (yaml is! Map) {
     throw ('unexpected metadata');
   }
 
   var metadata = Map<String, dynamic>.from(yaml);
-
-  lines.removeRange(first, last + 1);
-  return MetadataOutput(metadata, lines.join('\n'));
+  var content = lines.getRange(closingMetadataSeparatorIdx + 1, lines.length).join('\n');
+  return MetadataOutput(metadata, content);
 }
 
 class MetadataOutput {

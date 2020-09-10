@@ -13,7 +13,9 @@ class MustacheBuilder implements Builder {
   Future build(BuildStep buildStep) async {
     var inputId = buildStep.inputId;
 
-    var outputId = inputId.changeExtension(Extensions.html);
+    var htmlOutputId = inputId.changeExtension(Extensions.html);
+    var jsonOutputId = inputId.changeExtension(Extensions.json);
+
     var contents = await buildStep.readAsString(inputId);
     var metadata = await _readMetadata(buildStep);
     var templateName = metadata['template'] ?? '';
@@ -21,13 +23,17 @@ class MustacheBuilder implements Builder {
 
     var template = mustache.Template(templateStr, lenient: true);
 
-    // also render the metadata to the input file
+    // Populate any mustache variables in the actual content, using the frontmatter metadata as input
     var contentTemplate = mustache.Template(contents, lenient: true);
+    // Then, set the entire rendered content as a metadata variable called "content" to allow
+    // it to be injected into the template used for this page
     metadata['content'] = contentTemplate.renderString(metadata);
+    var htmlOutput = template.renderString(metadata);
 
-    var output = template.renderString(metadata);
-
-    await buildStep.writeAsString(outputId, output);
+    await Future.wait([
+      buildStep.writeAsString(htmlOutputId, htmlOutput),
+      buildStep.writeAsString(jsonOutputId, json.encode(metadata)),
+    ]);
   }
 
   Future<Map<String, dynamic>> _readMetadata(BuildStep buildStep) async {
@@ -66,6 +72,6 @@ class MustacheBuilder implements Builder {
 
   @override
   Map<String, List<String>> get buildExtensions => {
-        Extensions.htmlContent: [Extensions.html],
+        Extensions.htmlContent: [Extensions.html, Extensions.json],
       };
 }

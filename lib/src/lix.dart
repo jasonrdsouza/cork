@@ -23,17 +23,13 @@ class Lix {
   }
 
   int calculate() {
-    int result;
-
     if (words == 0 || periods == 0) {
       return 0; // Unknown score
-    } else {
-      final sentenceLength = words / periods;
-      final wordLength = (longWords * 100) / words;
-      result = (sentenceLength + wordLength).round();
     }
 
-    return result;
+    final sentenceLength = words / periods;
+    final wordLength = (longWords * 100) / words;
+    return (sentenceLength + wordLength).round();
   }
 
   String describe() {

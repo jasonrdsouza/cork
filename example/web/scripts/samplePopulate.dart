@@ -1,6 +1,6 @@
 import 'dart:html';
 
-main() {
+void main() {
   var sampleDiv = querySelector('#sample');
 
   var message = ParagraphElement()..text = 'Hello from dart!';

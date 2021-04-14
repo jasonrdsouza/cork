@@ -16,7 +16,8 @@ class AutomatedReadabilityIndex {
     var words = text.split(RegExp(r'\s+')).length;
     var sentences = text.split(punctuation).length;
 
-    return AutomatedReadabilityIndex(characters: characters, words: words, sentences: sentences);
+    return AutomatedReadabilityIndex(
+        characters: characters, words: words, sentences: sentences);
   }
 
   int calculate() {
@@ -25,7 +26,8 @@ class AutomatedReadabilityIndex {
     }
 
     // From https://en.wikipedia.org/wiki/Automated_readability_index
-    return (4.71 * (characters / words) + 0.5 * (words / sentences) - 21.43).ceil();
+    return (4.71 * (characters / words) + 0.5 * (words / sentences) - 21.43)
+        .ceil();
   }
 
   String describe() {

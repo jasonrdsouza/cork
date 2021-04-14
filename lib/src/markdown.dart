@@ -12,7 +12,8 @@ class MarkdownBuilder implements Builder {
 
     var outputId = inputId.changeExtension(Extensions.htmlContent);
     var markdownContent = await buildStep.readAsString(inputId);
-    var htmlContent = markdownToHtml(markdownContent, extensionSet: ExtensionSet.gitHubWeb);
+    var htmlContent =
+        markdownToHtml(markdownContent, extensionSet: ExtensionSet.gitHubWeb);
 
     await buildStep.writeAsString(outputId, htmlContent);
   }

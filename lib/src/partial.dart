@@ -19,7 +19,9 @@ class PartialBuilder implements Builder {
     _includeRE.allMatches(content).forEach((match) {
       final path = match.group(2);
 
-      var partialFuture = buildStep.readAsString(AssetId(inputId.package, path)).then((partial) async {
+      var partialFuture = buildStep
+          .readAsString(AssetId(inputId.package, path))
+          .then((partial) async {
         partials[path] = await partial;
       }).catchError((error) {
         print(error);

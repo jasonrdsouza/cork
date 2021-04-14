@@ -9,7 +9,10 @@ void main() {
 
   test('Lix calculation works as expected with sentences', () {
     expect(Lix.fromString('This is a test.').readability, equals(4));
-    expect(Lix.fromString('This is a test. And this is another test sentence.').readability, equals(25));
+    expect(
+        Lix.fromString('This is a test. And this is another test sentence.')
+            .readability,
+        equals(25));
   });
 
   test('Lix calculation fails gracefully with empty string', () {

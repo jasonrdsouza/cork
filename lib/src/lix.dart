@@ -15,7 +15,8 @@ class Lix {
     var periods = (RegExp(r'[.:;!?]').allMatches(text).length);
 
     // Count words
-    var allWords = text.replaceAll(RegExp(r'[.:;!?]'), '').split(RegExp(r'\W+'));
+    var allWords =
+        text.replaceAll(RegExp(r'[.:;!?]'), '').split(RegExp(r'\W+'));
     var words = allWords.length;
     var longWords = allWords.where((w) => w.length > 6).length;
 

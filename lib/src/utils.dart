@@ -3,8 +3,10 @@ import 'package:path/path.dart' as path;
 // Converts a local filepath to its web equivalent
 String getHtmlPath(String filepath) {
   // example: sample/path/to/file.ext
-  var directoryParts = path.split(path.dirname(filepath)); // ['sample', 'path', 'to']
-  var htmlFilename = path.basenameWithoutExtension(filepath) + '.html'; // file.html
+  var directoryParts =
+      path.split(path.dirname(filepath)); // ['sample', 'path', 'to']
+  var htmlFilename =
+      path.basenameWithoutExtension(filepath) + '.html'; // file.html
 
   var htmlPathComponents = directoryParts.sublist(1);
   htmlPathComponents.add(htmlFilename); // ['path', 'to', 'file.html']

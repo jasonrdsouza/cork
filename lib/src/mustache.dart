@@ -58,11 +58,13 @@ class MustacheBuilder implements Builder {
   }
 
   Future<String> _readTemplate(BuildStep buildStep, String fileName) async {
-    var assets = await buildStep.findAssets(Glob('web/templates/*.mustache')).toList();
+    var assets =
+        await buildStep.findAssets(Glob('web/templates/*.mustache')).toList();
     for (var asset in assets) {
       var assetFileName = asset.path.split('/').last;
       if (assetFileName == fileName) {
-        var assetStr = await buildStep.readAsString(AssetId(asset.package, asset.path));
+        var assetStr =
+            await buildStep.readAsString(AssetId(asset.package, asset.path));
         return assetStr;
       }
     }

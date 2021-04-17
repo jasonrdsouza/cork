@@ -48,12 +48,12 @@ class MetadataBuilder implements Builder {
   }
 }
 
-MetadataOutput extractMetadata(String fileContents) {
+MetadataOutput? extractMetadata(String fileContents) {
   const separator = '---';
   var lines = fileContents.split('\n');
   if (!lines.first.startsWith(separator)) return null;
 
-  int closingMetadataSeparatorIdx;
+  int? closingMetadataSeparatorIdx;
   for (var i = 1; i < lines.length; i++) {
     if (lines[i].startsWith(separator)) {
       closingMetadataSeparatorIdx = i;

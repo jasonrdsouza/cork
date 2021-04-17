@@ -1,10 +1,10 @@
 // Originally from https://github.com/dart-lang/samples/blob/master/null_safety/calculate_lix/lib/lix.dart
 
 class Lix {
-  int words; // number of words in general
-  int longWords; // number of words with more than 6 characters
-  int periods; // number of periods
-  int readability; // the calculated LIX readability index
+  int? words; // number of words in general
+  int? longWords; // number of words with more than 6 characters
+  int? periods; // number of periods
+  int? readability; // the calculated LIX readability index
 
   Lix({this.words, this.longWords, this.periods}) {
     readability = calculate();
@@ -28,21 +28,21 @@ class Lix {
       return 0; // Unknown score
     }
 
-    final sentenceLength = words / periods;
-    final wordLength = (longWords * 100) / words;
+    final sentenceLength = words! / periods!;
+    final wordLength = (longWords! * 100) / words!;
     return (sentenceLength + wordLength).round();
   }
 
   String describe() {
-    if (readability > 0 && readability < 20) {
+    if (readability! > 0 && readability! < 20) {
       return 'very easy';
-    } else if (readability < 30) {
+    } else if (readability! < 30) {
       return 'easy';
-    } else if (readability < 40) {
+    } else if (readability! < 40) {
       return 'a little hard';
-    } else if (readability < 50) {
+    } else if (readability! < 50) {
       return 'hard';
-    } else if (readability < 60) {
+    } else if (readability! < 60) {
       return 'very hard';
     } else {
       return 'unknown';

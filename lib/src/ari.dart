@@ -1,9 +1,9 @@
 class AutomatedReadabilityIndex {
-  int characters;
-  int words;
-  int sentences;
+  int? characters;
+  int? words;
+  int? sentences;
 
-  int readability;
+  int? readability;
 
   AutomatedReadabilityIndex({this.characters, this.words, this.sentences}) {
     readability = calculate();
@@ -26,7 +26,7 @@ class AutomatedReadabilityIndex {
     }
 
     // From https://en.wikipedia.org/wiki/Automated_readability_index
-    return (4.71 * (characters / words) + 0.5 * (words / sentences) - 21.43)
+    return (4.71 * (characters! / words!) + 0.5 * (words! / sentences!) - 21.43)
         .ceil();
   }
 

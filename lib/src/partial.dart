@@ -17,12 +17,10 @@ class PartialBuilder implements Builder {
     final partials = <String, String>{};
 
     _includeRE.allMatches(content).forEach((match) {
-      final path = match.group(2);
+      final path = match.group(2)!;
 
-      var partialFuture = buildStep
-          .readAsString(AssetId(inputId.package, path))
-          .then((partial) async {
-        partials[path] = await partial;
+      var partialFuture = buildStep.readAsString(AssetId(inputId.package, path)).then((partial) async {
+        partials[path] = partial;
       }).catchError((error) {
         print(error);
       });
@@ -33,7 +31,7 @@ class PartialBuilder implements Builder {
     await Future.wait(futures);
     final newContent = content.replaceAllMapped(_includeRE, (match) {
       final path = match.group(2);
-      return partials[path];
+      return partials[path!]!;
     });
 
     await buildStep.writeAsString(outputId, newContent);

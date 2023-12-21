@@ -65,7 +65,7 @@ In that `pubspec.yaml` file, add Cork as a dependency, along with the necessary 
 ```
 name: my_site
 dependencies:
-  cork_site: ^1.0.0
+  cork_site: ^2.0.0
   build: any
 dev_dependencies:
   build_runner: any
@@ -88,21 +88,21 @@ Finally, to generate your site, there are two options.
 Start by fetching any missing dependencies.
 
 ```sh
-pub get
+dart pub get
 ```
 
 ### Development Hot Reload
 Then, while working on your site, you can run a development server which live-reloads your changes
 
 ```sh
-pub run build_runner serve
+dart run build_runner serve
 ```
 
 ### Production Release
 When you're ready to generate a finished release of the site, run
 
 ```sh
-pub run build_runner build --release --output <OUTPUT_FOLDER_LOCATION>
+dart run build_runner build --release --output <OUTPUT_FOLDER_LOCATION>
 ```
 
 

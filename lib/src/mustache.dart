@@ -6,7 +6,7 @@ import 'package:mustache_template/mustache.dart' as mustache;
 
 import 'extensions.dart';
 
-Builder mustacheBuilder(_) => MustacheBuilder();
+Builder mustacheBuilder(dynamic _) => MustacheBuilder();
 
 class MustacheBuilder implements Builder {
   @override

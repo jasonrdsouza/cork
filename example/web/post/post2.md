@@ -10,4 +10,4 @@ Custom frontend logic to manipulate post:
 
 The element above is populated via dart running on the client.
 
-<script src="/scripts/samplePopulate.dart.js"></script>
+<script src="/scripts/sample_populate.dart.js"></script>

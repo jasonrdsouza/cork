@@ -2,7 +2,7 @@ import 'package:build/build.dart';
 
 import 'extensions.dart';
 
-PostProcessBuilder cleanupBuilder(_) => CleanupBuilder();
+PostProcessBuilder cleanupBuilder(dynamic _) => CleanupBuilder();
 
 class CleanupBuilder extends FileDeletingBuilder implements PostProcessBuilder {
   CleanupBuilder()

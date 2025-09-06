@@ -1,6 +1,3 @@
-library cork_site;
-// https://dart.dev/guides/libraries/create-library-packages
-
 export 'src/metadata.dart' show metadataBuilder;
 export 'src/partial.dart' show partialBuilder;
 export 'src/markdown.dart' show markdownBuilder;

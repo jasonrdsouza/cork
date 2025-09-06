@@ -9,7 +9,7 @@ import 'package:yaml/yaml.dart';
 import 'extensions.dart';
 import 'utils.dart';
 
-Builder metadataBuilder(_) => MetadataBuilder();
+Builder metadataBuilder(dynamic _) => MetadataBuilder();
 
 class MetadataBuilder implements Builder {
   @override

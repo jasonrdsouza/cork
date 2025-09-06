@@ -2,7 +2,7 @@ import 'package:build/build.dart';
 
 import 'extensions.dart';
 
-Builder partialBuilder(_) => PartialBuilder();
+Builder partialBuilder(dynamic _) => PartialBuilder();
 
 class PartialBuilder implements Builder {
   static final _includeRE = RegExp(r'{{>(\s*)(.*)}}(\s*)');

@@ -3,7 +3,7 @@ import 'package:markdown/markdown.dart';
 
 import 'extensions.dart';
 
-Builder markdownBuilder(_) => MarkdownBuilder();
+Builder markdownBuilder(dynamic _) => MarkdownBuilder();
 
 class MarkdownBuilder implements Builder {
   @override

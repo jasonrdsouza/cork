@@ -106,7 +106,7 @@ class RssBuilder implements Builder {
                 title: post.title,
                 description: post.description,
                 link:
-                    '${config.baseUrl.replaceAll(RegExp(r'/$'), '')}${post.url}',
+                    '${config.baseUrl.replaceAll(RegExp(r'/$'), '')}/${post.url.replaceAll(RegExp(r'^/'), '')}',
                 guid: post.guid,
                 pubDate: _formatDate(post.pubDate),
                 author: post.author ?? config.author?.email,

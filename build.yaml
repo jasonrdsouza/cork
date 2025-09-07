@@ -38,6 +38,15 @@ builders:
     auto_apply: root_package
     required_inputs:
       - .htmlcontent
+  rss:
+    import: "package:cork_site/cork_site.dart"
+    builder_factories: ["rssBuilder"]
+    build_extensions:
+      "pubspec.yaml":
+        - web/rss.xml
+    auto_apply: root_package
+    required_inputs:
+      - ".metadata"
 post_process_builders:
   cleanup:
     import: "package:cork_site/cork_site.dart"

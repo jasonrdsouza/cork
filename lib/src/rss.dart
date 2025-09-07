@@ -17,58 +17,33 @@ class RssBuilder implements Builder {
   @override
   Future<void> build(BuildStep buildStep) async {
     if (buildStep.inputId.path != 'pubspec.yaml') {
-      log.info('RSS: Skipping non-pubspec file: ${buildStep.inputId.path}');
       return;
     }
 
-    print('RSS: Starting RSS generation...');
-
-    try {
-      final config = await _loadRssConfig(buildStep);
-      if (config == null) {
-        print('RSS: No rss.yaml config found');
-        return;
-      }
-
-      print('RSS: Config loaded successfully');
-
-      final posts = await _findRssPosts(buildStep);
-      print('RSS: Found ${posts.length} RSS-enabled posts');
-
-      if (posts.isEmpty) {
-        print('RSS: No posts with RSS enabled found');
-        return;
-      }
-
-      await _generateRssFeed(buildStep, config, posts);
-      print('RSS: Generated RSS feed with ${posts.length} posts');
-    } catch (e, stackTrace) {
-      print('RSS: RSS generation failed: $e\n$stackTrace');
+    final config = await _loadRssConfig(buildStep);
+    if (config == null) {
+      return;
     }
+
+    final posts = await _findRssPosts(buildStep);
+    if (posts.isEmpty) {
+      return;
+    }
+
+    await _generateRssFeed(buildStep, config, posts);
   }
 
   Future<RssConfig?> _loadRssConfig(BuildStep buildStep) async {
-    // Read RSS config from pubspec.yaml
-    print('RSS DEBUG: Reading RSS config from pubspec.yaml');
+    final pubspecContent = await buildStep.readAsString(buildStep.inputId);
+    final yaml = loadYaml(pubspecContent) as Map;
 
-    try {
-      final pubspecContent = await buildStep.readAsString(buildStep.inputId);
-      final yaml = loadYaml(pubspecContent) as Map;
-
-      final rssConfig = yaml['cork_rss'] as Map?;
-      if (rssConfig == null) {
-        print('RSS DEBUG: No cork_rss section found in pubspec.yaml');
-        return null;
-      }
-
-      print('RSS DEBUG: Found cork_rss config in pubspec.yaml');
-      // Recursively convert YamlMap to Map<String, dynamic>
-      final configMap = _yamlToMap(rssConfig);
-      return RssConfig.fromMap(configMap);
-    } catch (e) {
-      print('RSS DEBUG: Error reading pubspec.yaml: $e');
+    final rssConfig = yaml['cork_rss'] as Map?;
+    if (rssConfig == null) {
       return null;
     }
+
+    final configMap = _yamlToMap(rssConfig);
+    return RssConfig.fromMap(configMap);
   }
 
   // Helper method to recursively convert YAML structures to regular Maps
@@ -88,29 +63,22 @@ class RssBuilder implements Builder {
     final posts = <RssPost>[];
     int totalMetadataFiles = 0;
 
-    print('RSS DEBUG: Starting to find RSS posts...');
-
     await for (final input in buildStep.findAssets(Glob('**.metadata'))) {
       totalMetadataFiles++;
-      print('RSS DEBUG: Processing metadata file: ${input.path}');
 
-      try {
-        final metadataJson = await buildStep.readAsString(input);
-        final metadata = json.decode(metadataJson) as Map<String, dynamic>;
+      final metadataJson = await buildStep.readAsString(input);
+      final metadata = json.decode(metadataJson) as Map<String, dynamic>;
 
-        if (metadata['rss'] == true) {
-          // Validate that RSS-enabled posts have a date field
-          if (metadata['date'] == null) {
-            log.warning(
-                'RSS post "${metadata['title'] ?? 'Untitled'}" has rss: true but no date field. Skipping.');
-            continue;
-          }
-
-          final post = RssPost.fromMetadata(metadata);
-          posts.add(post);
+      if (metadata['rss'] == true) {
+        // Validate that RSS-enabled posts have a date field
+        if (metadata['date'] == null) {
+          print(
+              'RSS post "${metadata['title'] ?? 'Untitled'}" has rss: true but no date field. Skipping.');
+          continue;
         }
-      } catch (e) {
-        log.warning('Failed to process metadata file ${input.path}: $e');
+
+        final post = RssPost.fromMetadata(metadata);
+        posts.add(post);
       }
     }
 

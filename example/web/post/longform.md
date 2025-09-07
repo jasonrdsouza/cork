@@ -2,6 +2,9 @@
 title: "The Book of Genesis"
 tags: ['longform', 'bible']
 template: post.mustache
+rss: true
+date: "2025-01-25"
+description: "A demo post showcasing Cork's builtin reading time variables"
 ---
 
 

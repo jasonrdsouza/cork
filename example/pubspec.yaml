@@ -15,7 +15,7 @@ dev_dependencies:
   web: any
 
 cork_rss:
-  title: "Cork Site"
+  title: "Cork Example Site"
   description: "A minimalist personal static site generator"
   base_url: "https://example.com"
   language: "en-us"

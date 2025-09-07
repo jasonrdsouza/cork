@@ -15,6 +15,7 @@ dependencies:
   yaml: ^3.1.0
   mustache_template: ^2.0.0
   web: ^1.1.1
+  dart_rss: ^3.0.3
 
 dev_dependencies:
   test: ^1.16.8

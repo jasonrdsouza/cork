@@ -13,3 +13,14 @@ dev_dependencies:
   build_web_compilers: any
   lints: ^6.0.0
   web: any
+
+cork_rss:
+  title: "Cork Site"
+  description: "A minimalist personal static site generator"
+  base_url: "https://example.com"
+  language: "en-us"
+  copyright: "© 2025 Cork Site"
+  author:
+    name: "Cork User"
+    email: "user@example.com"
+  max_items: 20

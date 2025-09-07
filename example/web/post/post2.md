@@ -2,6 +2,9 @@
 title: Post with custom logic
 tags: ['frontend']
 template: post.mustache
+rss: true
+date: "2025-01-15"
+description: "A demo post showing how to add custom frontend logic with Dart"
 ---
 
 Custom frontend logic to manipulate post:

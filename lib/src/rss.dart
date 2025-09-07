@@ -61,11 +61,8 @@ class RssBuilder implements Builder {
 
   Future<List<RssPost>> _findRssPosts(BuildStep buildStep) async {
     final posts = <RssPost>[];
-    int totalMetadataFiles = 0;
 
     await for (final input in buildStep.findAssets(Glob('**.metadata'))) {
-      totalMetadataFiles++;
-
       final metadataJson = await buildStep.readAsString(input);
       final metadata = json.decode(metadataJson) as Map<String, dynamic>;
 
